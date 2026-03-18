@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>
+            Tax calculator
+        </title>
+    </head>
+    <body>
+        <h1>Tax calculator</h1>
+
+        <div class="getIncome">
+            <label for="income_1">Income:</label>
+            <input type="text" id="income_1"><br/><br/>
+
+            <button id="addBtn" class="circle-btn">+</button>
+            <button id="removeBtn" class="circle-btn">-</button>
+
+            <input type="text" id="income_2"/>
+            <input type="text" id="income_3" /><br/>
+            <p id="countDisplay"></p> <!--for debugging-->
+
+            <label for="total_income">Total Income:</label>
+            <input type="text" id="total_income" readonly/>
+
+            <button id="totalButton">
+                Result
+            </button>
+        </div>
+        <hr>
+        <div class="TaxCal">
+            <label for="taxRate">Tax rate (%):</label>
+            <input type="text" id="taxRate" readonly/><br/>
+
+            <label for="netTax">Tax to pay(Baht):</label>
+            <input type="text" id="netTax" readonly/><br/>
+
+        </div>
+    
+    </body>
+    <script src="tax.js"></script>
+</html>
