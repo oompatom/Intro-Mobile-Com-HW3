@@ -1,22 +1,64 @@
-income_1 = document.getElementById("income_1")
-income_2 = document.getElementById("income_2")
-income_3 = document.getElementById("income_3")
-button = document.getElementById("totalButton")
+let total = 0;
+let ratio = 0;
 
+let income_1 = document.getElementById("income_1");
+let income_2 = document.getElementById("income_2");
+let income_3 = document.getElementById("income_3");
+let result = document.getElementById("total_income");
 
-button.addEventListener("click", () => {
-    totalIncome()
-    rateCalculation()
-    taxCalculation()
-})
+income_1.addEventListener("input", totalIncome);
+income_2.addEventListener("input", totalIncome);
+income_3.addEventListener("input", totalIncome);
 
-function totalIncome()  {
-    input_1 = Number(income_1.value)
-    input_2 = Number(income_2.value)
-    input_3 = Number(income_3.value)
-    total = input_1 + input_2 + input_3
+function totalIncome() {
+    let input_1 = checkInput(income_1);
+    let input_2 = checkInput(income_2);
+    let input_3 = checkInput(income_3);
+
+    let taxRateField = document.getElementById("taxRate");
+    let netTaxField = document.getElementById("netTax");
+
+    if (input_1 === "error" || input_2 === "error" || input_3 === "error") {
+        result.value = "invalid number";
+        result.style.color = "red";
+        
+        taxRateField.value = "error";
+        taxRateField.style.color = "red";
+        
+        netTaxField.value = "error";
+        netTaxField.style.color = "red";
+        
+        return;
+    }
+
+    total = input_1 + input_2 + input_3;
+    result.value = total;
+    result.style.color = "";
     
-    document.getElementById("total_income").value = total
+    //คำนวณเฉพาะตอนกรอกถูก
+    rateCalculation();
+    taxCalculation();
+
+    taxRateField.style.color = "";
+    netTaxField.style.color = "";
+}
+
+function checkInput(inputElement) {
+    let inputValue = inputElement.value;
+    
+    if (inputValue.trim() === "") {
+        inputElement.style.color = "";
+        return 0; 
+    }
+
+    let num = Number(inputValue);
+    if (Number.isNaN(num) || num < 0) {
+        inputElement.style.color = "red";
+        return "error";
+    }
+    
+    inputElement.style.color = "";
+    return num;
 }
 
 function rateCalculation() {
@@ -29,47 +71,43 @@ function rateCalculation() {
     else if (total <= 5000000) ratio = 30;
     else ratio = 35;
 
-    document.getElementById("taxRate").value = ratio
-
+    document.getElementById("taxRate").value = ratio;
 }
 
 function taxCalculation() {
-    let tax = (total * ratio) / 100
-    document.getElementById("netTax").value = tax
+    let tax = (total * ratio) / 100;
+    document.getElementById("netTax").value = tax;
 }
 
-addBtn = document.getElementById("addBtn")
-removeBtn =document.getElementById("removeBtn")
-income_2.style.display="none"
-income_3.style.display="none"
+let addBtn = document.getElementById("addBtn");
+let removeBtn = document.getElementById("removeBtn");
+income_2.style.display = "none";
+income_3.style.display = "none";
 
-let count = 0
-countDisplay = document.getElementById("countDisplay")
+let count = 0;
 
-addBtn.addEventListener("click", function() {
-    // countDisplay.textContent=count
-
+addBtn.addEventListener("click", function () {
     if (count == 0) {
-        income_2.style.display="block"
-        count++
-        // countDisplay.textContent=count
-    } else if (count == 1) {
-        income_3.style.display="block"
-        count++
-        // countDisplay.textContent=count
+        income_2.style.display = "block";
+        count++;
 
+    } else if (count == 1) {
+        income_3.style.display = "block";
+        count++;
     }
-})
+});
 
 removeBtn.addEventListener("click", function() {
     if (count == 2) {
-        income_2.style.display="none"
-        count--
-        // countDisplay.textContent=count
+        income_3.style.display = "none";
+        count--;
+        income_3.value = "";
+        income_3.dispatchEvent(new Event("input"));
 
-    } else if (count == 1) { //the same as else if of add == corrupt
-        income_3.style.display="none"
-        count--
-        // countDisplay.textContent=count
+    } else if (count == 1) {
+        income_2.style.display = "none";
+        count--;
+        income_2.value = "";
+        income_2.dispatchEvent(new Event("input"));
     }
-})
+});
