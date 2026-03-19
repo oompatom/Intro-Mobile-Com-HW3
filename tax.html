@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="style.css">
-    <title>Tax calculator</title>
-</head>
-
-<body>
-    <h1>Tax calculator</h1>
-
-    <div class="container">
+    <head>
+        <title>Tax calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <button id="darkLight">Dark Mode</button>
         
-        <div class="getIncome">
-            <label for="income_1">Income:</label>
+        <div class="container">
+            <h1>Tax calculator</h1>
 
-            <div class="input-group">
-                <input type="text" id="income_1">
-                <div class="btn-group">
-                    <button id="addBtn" class="circle-btn">+</button>
-                    <button id="removeBtn" class="circle-btn">-</button>
+            <div class="getIncome">
+                <label for="income_1">Income (Baht):</label>
+                
+                <div class="input-group">
+                    <input type="text" id="income_1">
+                    <div class="btn-group">
+                        <button id="addBtn" class="circle-btn">+</button>
+                        <button id="removeBtn" class="circle-btn">-</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="income_2"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="income_3" />
+                </div>
+
+                <label for="total_income">Total Income (Baht):</label>
+                <div class="input-group">
+                    <input type="text" id="total_income" readonly/>
                 </div>
             </div>
+            
+            <hr>
+            
+            <div class="TaxCal">
+                <label for="taxRate">Tax rate (%):</label>
+                <div class="input-group">
+                    <input type="text" id="taxRate" readonly/>
+                </div>
 
-            <div class="input-group">
-                <input type="text" id="income_2"/>
-            </div>
-            <div class="input-group">
-                <input type="text" id="income_3"/>
-            </div>
-
-            <p id="countDisplay"></p>
-
-            <label for="total_income">Total Income:</label>
-
-            <div class="input-group">
-                <input type="text" id="total_income" readonly/>
-                <div class="btn-group">
-                    <button id="totalButton">Result</button>
+                <label for="netTax">Tax to pay (Baht):</label>
+                <div class="input-group">
+                    <input type="text" id="netTax" readonly/>
                 </div>
             </div>
         </div>
-
-        <hr>
-
-        <div class="TaxCal">
-            <label for="taxRate">Tax rate (%):</label>
-            <div class="input-group">
-                <input type="text" id="taxRate" readonly/>
-            </div>
-
-            <label for="netTax">Tax to pay (Baht):</label>
-            <div class="input-group">
-                <input type="text" id="netTax" readonly/>
-            </div>
-        </div>
-
-    </div> </body>
-<script src="tax.js"></script>
+    </body>
+    <script src="tax.js"></script>
+    <script src="darkmode.js"></script>
 </html>
