@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+#datetime-display {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    border: none;
+    background-color: transparent;
+    text-align: center; 
+}
+
+.error {
+    color: red !important;
+}
